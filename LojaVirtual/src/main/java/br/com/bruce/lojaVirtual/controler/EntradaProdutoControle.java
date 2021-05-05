@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.bruce.lojaVirtual.modelos.EntradaItens;
 import br.com.bruce.lojaVirtual.modelos.EntradaProduto;
 import br.com.bruce.lojaVirtual.modelos.Estado;
+import br.com.bruce.lojaVirtual.modelos.Produto;
 import br.com.bruce.lojaVirtual.repositorio.EntradaItensRepositorio;
 import br.com.bruce.lojaVirtual.repositorio.EntradaProdutoRepositorio;
 import br.com.bruce.lojaVirtual.repositorio.EstadoRepositorio;
@@ -77,6 +78,20 @@ public class EntradaProdutoControle {
 
 		if(acao.equals("itens")) {
 			this.listaEntrada.add(entradaItens);
+		}else if(acao.equals("salvar")){
+			this.entradaProdutoRepositorio.saveAndFlush(entrada);
+			for(EntradaItens it:listaEntrada) {
+				it.setEntrada(entrada);
+				entradaItensRepositorio.saveAndFlush(it);
+				Optional<Produto> prod = this.produtoRepositorio.findById(it.getProduto().getId());
+				Produto produto = prod.get();
+				produto.setQuantidadeEstoque(produto.getQuantidadeEstoque() + it.getQuantidade());
+				produto.setValorVenda(it.getValorVenda());
+				this.produtoRepositorio.saveAndFlush(produto);
+				this.listaEntrada = new ArrayList<>();
+				
+			}
+			return cadastro(new EntradaProduto(), new EntradaItens());
 		}
 		System.out.println(this.listaEntrada.size());
 		

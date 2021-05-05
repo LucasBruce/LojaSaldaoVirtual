@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "estado")
+@Table(name = "entrada_produto")
 public class EntradaProduto implements Serializable {
 
 	public EntradaProduto() {

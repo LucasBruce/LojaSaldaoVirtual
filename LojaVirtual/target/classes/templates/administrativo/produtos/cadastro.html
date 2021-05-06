@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.w3.org/1999/xhtml"
-	layout:decorate="~{administrativo/fragments/layout}">
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{administrativo/fragments/layout}">
+
 <head>
-<title>Página Cadastro de produtos da loja virtual</title>
+	<title>Página Cadastro de produtos da loja virtual</title>
 </head>
+
 <body>
 	<section class="layout-content" layout:fragment="corpo">
 		<div class="page-header">
@@ -14,52 +15,80 @@
 							<span>Cadastrar Produto</span></li>
 					</ul>
 				</div>
-				<a class="btn btn-primary btn-md"
-					href="/administrativo/produtos/lista" role="button"> <span
-					class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
+				<a class="btn btn-primary btn-md" href="/administrativo/produtos/lista" role="button"> <span
+						class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
 					<span>Listar Produtos</span>
 				</a>
 			</nav>
 		</div>
 
 		<div class="container" id="cadastro">
-			<form action="/administrativo/produtos/salvar" th:object="${produto}"
+			<form action="/administrativo/produtos/salvar" enctype="multipart/form-data" th:object="${produto}"
 				method="POST">
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="nome">Descrição do Produto</label> <input type="text"
-							class="form-control" id="nome" placeholder="Descrição"
-							autofocus="autofocus" th:field="*{descricao}" value="" />
+						<label for="nome">Descrição do Produto</label> <input type="text" class="form-control" id="nome"
+							placeholder="Descrição" autofocus="autofocus" th:field="*{descricao}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
 					<div class="form-group col-md-6">
-						<label for="salario">Categoria</label> <input type="text"
-							class="form-control" id="categoria" placeholder="Categoria"
-							data-mask-reverse="true" th:field="*{categoria}" value="" />
+						<label for="salario">Categoria</label> <input type="text" class="form-control" id="categoria"
+							placeholder="Categoria" data-mask-reverse="true" th:field="*{categoria}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
 
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="nome">Marca</label> <input type="text"
-							class="form-control" id="marca" placeholder="Marca"
-							autofocus="autofocus" th:field="*{marca}" value="" />
+						<label for="nome">Marca</label> <input type="text" class="form-control" id="marca"
+							placeholder="Marca" autofocus="autofocus" th:field="*{marca}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
 					<div class="form-group col-md-6">
-						<label for="salario">Valor de Venda</label> <input type="text"
-							class="form-control" id="valorVenda" placeholder="Valor de Venda"
-							data-mask-reverse="true" th:field="*{valorVenda}" value="" />
+						<label for="salario">Valor de Venda</label> <input type="text" class="form-control"
+							id="valorVenda" placeholder="Valor de Venda" data-mask-reverse="true"
+							th:field="*{valorVenda}" value="" />
 						<div class="invalid-feedback"></div>
 					</div>
 				</div>
 
+				<div class="form-group col-md-12">
+					<input type="file" name="file" />
+				</div>
+
 				<input type="hidden" id="id" th:field="*{id}" name="id" value="" />
-				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+
+				<a type="submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-warning"
+					th:attr="data-target='#modal-warning'+${produto.id }"><span class="btn btn-primary btn-sm"
+						title="Remover" aria-hidden="true">Salvar</span></a>
+
+
+				<div class="modal modal-warning fade in" th:id="modal-warning+${produto.id}">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Enviar Imagem</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+									<span aria-hidden="true">×</span>
+								</button>
+
+							</div>
+							<div class="modal-body">
+								<h3>Imagem não poderá ter mais que 10kb de tamanho!</h3>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary pull-left"
+									data-dismiss="modal">Fechar</button>
+								<button type="submit" class="btn btn-danger"><i
+										class="fa fa-check"></i>&nbsp;Enviar</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</form>
 		</div>
 	</section>
 
 </body>
+
 </html>

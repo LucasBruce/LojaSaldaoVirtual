@@ -53,17 +53,17 @@
 				</div>
 
 				<div class="form-group col-md-12">
-					<input type="file" name="file" />
+					<input type="file" name="file" accept="image/png"/>
 				</div>
 
 				<input type="hidden" id="id" th:field="*{id}" name="id" value="" />
 
 				<a type="submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-warning"
-					th:attr="data-target='#modal-warning'+${produto.id }"><span class="btn btn-primary btn-sm"
+					th:attr="data-target='#modal-warning'"><span class="btn btn-primary btn-sm"
 						title="Remover" aria-hidden="true">Salvar</span></a>
 
 
-				<div class="modal modal-warning fade in" th:id="modal-warning+${produto.id}">
+				<div class="modal modal-warning fade in" th:id="modal-warning">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">

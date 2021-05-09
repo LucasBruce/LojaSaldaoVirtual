@@ -18,6 +18,7 @@ import br.com.bruce.lojaVirtual.modelos.EntradaItens;
 import br.com.bruce.lojaVirtual.modelos.EntradaProduto;
 import br.com.bruce.lojaVirtual.modelos.Estado;
 import br.com.bruce.lojaVirtual.modelos.Produto;
+import br.com.bruce.lojaVirtual.repositorio.CidadeRepositorio;
 import br.com.bruce.lojaVirtual.repositorio.EntradaItensRepositorio;
 import br.com.bruce.lojaVirtual.repositorio.EntradaProdutoRepositorio;
 import br.com.bruce.lojaVirtual.repositorio.EstadoRepositorio;
@@ -41,6 +42,9 @@ public class EntradaProdutoControle {
 	@Autowired
 	private ProdutoRepositorio produtoRepositorio;
 	
+	@Autowired
+	private CidadeRepositorio cidadeRepositorio;
+	
 	@GetMapping("/administrativo/entrada/cadastro")
 	public ModelAndView cadastro(EntradaProduto entrada,
 			EntradaItens entradaItens) {
@@ -53,12 +57,12 @@ public class EntradaProdutoControle {
 		return mav;
 	}
 
-//	@GetMapping("/administrativo/estados/lista")
-//	public ModelAndView listar() {
-//		ModelAndView mav = new ModelAndView("administrativo/estados/lista");
-//		mav.addObject("listaEstados", this.estadoRepositorio.findAll());
-//		return mav;
-//	}
+	@GetMapping("/administrativo/entrada/listar")
+	public ModelAndView listar() {
+		ModelAndView mav = new ModelAndView("administrativo/estados/lista");
+		mav.addObject("listaCidades", this.cidadeRepositorio.findAll());
+		return mav;
+	}
 
 //	@GetMapping("/administrativo/estados/editar/{id}")
 //	public ModelAndView editar(@PathVariable("id") long id) {

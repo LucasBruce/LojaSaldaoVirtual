@@ -56,6 +56,8 @@ public class FuncionarioControle {
 	
 	@PostMapping("/administrativo/funcionarios/salvar")
 	public ModelAndView salvar(@Valid Funcionario funcionario, BindingResult result) {
+		
+//		System.out.println(result.getAllErrors());
 		if(result.hasErrors()) {
 			return cadastro(funcionario);
 		}

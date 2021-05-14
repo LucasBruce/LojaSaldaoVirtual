@@ -17,24 +17,26 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th scope="col"> </th>
+								<th scope="col">Imagem</th>
 								<th scope="col">Produto</th>
 								<th scope="col">estoque</th>
-								<th scope="col" class="text-center">Quantidade</th>
+								<th scope="col">Quantidade</th>
+								<th scope="col"> </th>
 								<th scope="col" class="text-right">Preço</th>
+								
 								<th> </th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr th:each="item : ${listaItens}">
 								<td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-								<td>Product Name Dada</td>								
-								<td>In stock</td>
-								<td>&nbsp;10 </td>
+								<td th:text="${item.produto.descricao}"></td>								
+								<td>Em estoques</td>
+								<td>&nbsp;<span th:text="${item.quantidade}"></span> </td>
 								<td><button class="btn btn-sm btn-success"><i class="fa fa-plus"></i></button>&nbsp;&nbsp;
 								<button class="btn btn-sm btn-success"><i class="fa fa-minus"></i></button> 
 								</td>
-								<td class="text-right">124,90 €</td>
+								<td class="text-right" th:text="${item.valorTotal}"></td>
 								<td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>
 									</button> </td>
 							</tr>

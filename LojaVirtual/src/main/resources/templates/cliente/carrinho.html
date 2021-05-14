@@ -3,12 +3,12 @@
 
 <head>
 	<title>Carrinho de Compra</title>
-	
+
 </head>
 
 <body>
 	<!-- Navigation-->
-	
+
 	<!-- Page Content-->
 	<div class="container" layout:fragment="corpo">
 		<div class="row">
@@ -20,49 +20,71 @@
 								<th scope="col">Imagem</th>
 								<th scope="col">Produto</th>
 								<th scope="col">estoque</th>
-								<th scope="col">Quantidade</th>
-								<th scope="col"> </th>
-								<th scope="col" class="text-right">Preço</th>
-								
+								<th scope="col" class="text-center">Quantidade</th>
+								<th scope="col" class="text-right">Valor Unitário</th>
+								<th scope="col" class="text-right">Valor Total</th>
+
 								<th> </th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="item : ${listaItens}">
 								<td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-								<td th:text="${item.produto.descricao}"></td>								
+								<td th:text="${item.produto.descricao}"></td>
 								<td>Em estoques</td>
 								<td>&nbsp;<span th:text="${item.quantidade}"></span> </td>
-								<td><button class="btn btn-sm btn-success"><i class="fa fa-plus"></i></button>&nbsp;&nbsp;
-								<button class="btn btn-sm btn-success"><i class="fa fa-minus"></i></button> 
+								<td>
+									<a class="btn btn-sm btn-success"
+										th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.id},acao=${1})}"
+										role="button"><i class="fa fa-plus"></i></a>
+
+									<a class="btn btn-sm btn-success"
+										th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.id},acao=${0})}"
+										role="button"><i class="fa fa-minus"></i></a>
+
+
 								</td>
+								<td class="text-right" th:text="${item.valorUnitario}"></td>
 								<td class="text-right" th:text="${item.valorTotal}"></td>
-								<td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>
-									</button> </td>
+								<td class="text-right">
+
+									<a class="btn btn-sm btn-danger"
+										th:href="@{/removerProduto/{id}(id=${item.produto.id})}" role="button"><i
+											class="fa fa-trash"></i></a>
+
+								</td>
 							</tr>
 							<tr>
+								<td></td>
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
 								<td>Sub-Total</td>
-								<td class="text-right">255,90 €</td>
+								
+								<td class="text-right"><span th:text="${compra.valorTotal}"></span></td>
 							</tr>
 							<tr>
+								<td></td>
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
 								<td>Frete</td>
-								<td class="text-right">6,90 €</td>
+								<td class="text-right">0,00</td>
 							</tr>
 							<tr>
 								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
+								<td></td>
 								<td><strong>Total</strong></td>
-								<td class="text-right"><strong>346,90 €</strong></td>
+								
+								<td class="text-right"><strong><span th:text="${compra.valorTotal}"></strong></td>
 							</tr>
 						</tbody>
 					</table>
@@ -80,10 +102,10 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 
-	
+
 </body>
 
 </html>

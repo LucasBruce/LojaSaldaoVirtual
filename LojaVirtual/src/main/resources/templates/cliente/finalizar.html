@@ -2,7 +2,7 @@
 <html lang="pt" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{cliente/fragments/layout}">
 
 <head>
-	<title>Carrinho de Compra</title>
+	<title>Finalizar Compra</title>
 
 </head>
 
@@ -12,6 +12,19 @@
 	<!-- Page Content-->
 	<div class="container" layout:fragment="corpo">
 		<div class="row">
+		<div class="col-12">
+		<h1>Informações do cliente que está logado na aplicação</h1>
+		</div>
+		
+		<div class="col-6">
+			<select class="form-control" id="cars">
+				  <option value="Cartão de Crédito">Cartão de Crédito</option>
+				  <option value="Cartão de Débito">Cartão de Débito</option>
+				  <option value="Boleto">Boleto</option>
+				  <option value="Transferância">Transferância</option>
+			</select>
+		</div>
+		
 			<div class="col-12">
 				<div class="table-responsive">
 					<table class="table table-striped">
@@ -23,6 +36,7 @@
 								<th scope="col" class="text-center">Quantidade</th>
 								<th scope="col" class="text-right">Valor Unitário</th>
 								<th scope="col" class="text-right">Valor Total</th>
+
 								<th> </th>
 							</tr>
 						</thead>
@@ -31,23 +45,10 @@
 								<td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
 								<td th:text="${item.produto.descricao}"></td>
 								<td>Em estoques</td>
-								<td>&nbsp;<span th:text="${item.quantidade}"></span> 
-								
-									<a class="btn btn-sm btn-success"
-										th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.id},acao=${1})}"
-										role="button"><i class="fa fa-plus"></i></a>
-
-									<a class="btn btn-sm btn-success"
-										th:href="@{/alterarQuantidade/{id}/{acao}(id=${item.produto.id},acao=${0})}"
-										role="button"><i class="fa fa-minus"></i></a>
-
-
-								</td>
+								<td>&nbsp;<span th:text="${item.quantidade}"></span></td>
 								<td class="text-right" th:text="${item.valorUnitario}"></td>
 								<td class="text-right" th:text="${item.valorTotal}"></td>
-								<td class="text-right"><a class="btn btn-sm btn-danger"
-										th:href="@{/removerProduto/{id}(id=${item.produto.id})}" role="button"><i
-											class="fa fa-trash"></i></a></td>								
+								<td class="text-right"></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -73,8 +74,7 @@
 								<td></td>
 								<td></td>
 								<td></td>
-								<td><strong>Total</strong></td>
-								
+								<td><strong>Total</strong></td>								
 								<td class="text-right"><strong><span th:text="${compra.valorTotal}"></strong></td>
 							</tr>
 						</tbody>
@@ -85,11 +85,9 @@
 			<div class="col mb-2">
 				<div class="row">
 					<div class="col-sm-12  col-md-6">
-						<button class="btn btn-block btn-light">Continue Comprando</button>
 					</div>
 					<div class="col-sm-12 col-md-6 text-right">
-					<a class="btn btn-lg btn-block btn-success text-uppercase"
-										th:href="@{/finalizar}" role="button">Finalizar Compra</a>
+						<button class="btn btn-lg btn-block btn-success text-uppercase">CONFIRMAR A COMPRA</button>
 					</div>
 				</div>
 			</div>

@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -61,7 +62,7 @@ public class FuncionarioControle {
 		if(result.hasErrors()) {
 			return cadastro(funcionario);
 		}
-//		funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));
+		funcionario.setSenha(new BCryptPasswordEncoder().encode(funcionario.getSenha()));
 		this.funcionarioRepositorio.saveAndFlush(funcionario);
 		return cadastro(new Funcionario());
 	}

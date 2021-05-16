@@ -35,7 +35,17 @@ public class CarrinhoControle {
 	public ModelAndView chamarCarrinho() {
 		ModelAndView mav = new ModelAndView("cliente/carrinho");
 		this.calcularTotal();
-		System.out.println(compra.getValorTotal());
+		//System.out.println(compra.getValorTotal());
+		mav.addObject("compra", compra);
+		mav.addObject("listaItens", itensCompra);
+		return mav;
+	}
+	
+	@GetMapping("/finalizar")
+	public ModelAndView finalizarCompra() {
+		ModelAndView mav = new ModelAndView("cliente/finalizar");
+		this.calcularTotal();
+		//System.out.println(compra.getValorTotal());
 		mav.addObject("compra", compra);
 		mav.addObject("listaItens", itensCompra);
 		return mav;

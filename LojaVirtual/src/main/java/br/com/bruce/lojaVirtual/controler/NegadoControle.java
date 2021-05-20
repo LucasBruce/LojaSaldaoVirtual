@@ -23,8 +23,14 @@ import br.com.bruce.lojaVirtual.repositorio.EstadoRepositorio;
 public class NegadoControle {
 
 	
+	@GetMapping("/negadoAdministrativo")
+	public ModelAndView negadoAdministrativo() {
+		ModelAndView mav = new ModelAndView("/negadoAdministrativo");
+		return mav;
+	}
+	
 	@GetMapping("/negadoCliente")
-	public ModelAndView negado() {
+	public ModelAndView negadoCliente() {
 		ModelAndView mav = new ModelAndView("/negadoCliente");
 		return mav;
 	}

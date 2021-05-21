@@ -26,7 +26,7 @@ import br.com.bruce.lojaVirtual.repositorio.ProdutoRepositorio;
 @Controller
 public class ProdutoControle {
 
-	private static String caminhoImagens = "/home/lucas/Documents/imagens/";
+	private static String caminhoImagens = "C:\\Users\\lucas.matheus\\Pictures";
 
 	@Autowired
 	private ProdutoRepositorio produtoRepositorio;
